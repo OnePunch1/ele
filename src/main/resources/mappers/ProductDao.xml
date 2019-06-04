@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace：命名空间，用于隔离sql-->
+<mapper namespace="dao.ProductDao">
+   <resultMap type="entity.Product" id="ProductResult" >
+      <result property="productId" column="product_id"/>
+      <result property="productName" column="product_name"/>
+      <result property="productPrice" column="product_price"/>
+      <result property="productDesc" column="product_desc"/>
+      <result property="storeId" column="store_id"/>
+      <result property="productImage" column="product_image"/>
+   </resultMap>
+   <!-- <select id="findUserByUsername" parameterType="String" resultType="cn.zhku.jsj.mybatis.entity.User">
+        select * from user where username like '%%'
+    </select>-->
+    <select id="getProduct" resultMap="ProductResult" parameterType="int">
+      select * from product where product_id=#{storeId} order by product_id desc limit 1
+   </select>
+   <select id="getAllProduct" resultMap="ProductResult" parameterType="int">
+      select * from product where store_id=#{storeId} order by product_id
+   </select>
+
+   <select id="getSortPrice" resultMap="ProductResult" parameterType="map">
+      select * from product where store_id=#{storeId} order by product_price
+      <if test="flag='true'">
+         desc
+      </if>
+      <if test="flag='false'">
+         asc
+      </if>
+   </select>
+</mapper>
