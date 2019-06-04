@@ -16,7 +16,6 @@ public class ProductController {
     @RequestMapping("/get")
     public Product get(int id){
         id=1;
-        System.out.println(productService.getOne(id).toString());
         return productService.getOne(id);
     }
 }
