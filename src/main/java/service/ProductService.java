@@ -1,7 +1,11 @@
 package service;
 
-import entity.Product;
+import util.PageResult;
+import util.PageUtil;
 
 public interface ProductService {
-   Product getOne(int id);
+   PageResult getProductPage(PageUtil pageUtil);
+   PageResult getSortMarkPage(PageUtil pageUtil);
+   PageResult getSortPricePage(PageUtil pageUtil);
+   PageResult getSortOrderPage(PageUtil pageUtil);
 }
